@@ -17,6 +17,12 @@ def draw_window(c):
     SCREEN.blit(main_character, (c.x, c.y))
     p.display.update()
 
+def move_main_character(e, c):
+    if e.type == p.KEYDOWN:
+        if e.key == p.K_RIGHT:
+            c.x += 10
+
+
 
 def main():
     c = p.Rect(-250, 25, 600, 600)
@@ -28,9 +34,7 @@ def main():
         for e in p.event.get():
             if e.type == p.QUIT:
                 run = False
-            if e.type == p.KEYDOWN:
-                if e.key == p.K_RIGHT:
-                    c.x += 10
+            move_main_character(e, c)
         draw_window(c)
 
     p.quit()

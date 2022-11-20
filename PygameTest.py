@@ -1,6 +1,7 @@
 import pygame as p
 
 WIDTH, HEIGHT = 600, 300
+R_BORDER = 300
 SCREEN = p.display.set_mode((WIDTH, HEIGHT))
 p.display.set_caption("Basic Game")
 
@@ -12,20 +13,21 @@ FIGURE = p.image.load('stick_figure.png')
 main_character = p.transform.scale(FIGURE, (600, 600))
 
 
-def draw_window(c):
+def draw_window(m_c):
     SCREEN.fill(WHITE)
-    SCREEN.blit(main_character, (c.x, c.y))
+    SCREEN.blit(main_character, (m_c.x, m_c.y))
     p.display.update()
 
-def move_main_character(e, c):
+def move_main_character(e, m_c):
     if e.type == p.KEYDOWN:
-        if e.key == p.K_RIGHT:
-            c.x += 10
-
+        if e.key == p.K_RIGHT and m_c.x <= R_BORDER:
+            m_c.x += 10
+        if e.key == p.K_LEFT and m_c.x >= -275:
+            m_c.x -= 10
 
 
 def main():
-    c = p.Rect(-250, 25, 600, 600)
+    m_c = p.Rect((-250, 25), (10, 10))
 
     clock = p.time.Clock()
     run = True
@@ -34,8 +36,8 @@ def main():
         for e in p.event.get():
             if e.type == p.QUIT:
                 run = False
-            move_main_character(e, c)
-        draw_window(c)
+            move_main_character(e, m_c)
+        draw_window(m_c)
 
     p.quit()
 

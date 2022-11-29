@@ -19,7 +19,7 @@ main_object = p.transform.scale(OBJECT, (40, 25))
 def draw_window(m_c, m_o):
     SCREEN.fill(WHITE)
     SCREEN.blit(main_character, (m_c.x, m_c.y))
-    SCREEN.blit(main_object, (m_o.x -10, m_o.y))
+    SCREEN.blit(main_object, (m_o.x, m_o.y))
     p.draw.line(SCREEN, GREY, (0, 245), (600, 245), 1)
     #p.draw.rect(SCREEN, GREY, p.Rect(450, 220, 25, 25), 1)
     p.display.update()

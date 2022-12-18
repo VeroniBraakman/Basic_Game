@@ -33,6 +33,16 @@ def move_main_character(m_c):
     if key_input[p.K_LEFT] and m_c.x >= 0:
         m_c.x -= VEL
 
+def m_c_jump(m_c):
+    jump = False
+    key_input = p.key.get_pressed()
+    if key_input[p.K_SPACE] and jump == False:
+        jump = True
+
+    if jump == True:
+        m_c.y -= VEL
+
+
 def detect_collision(m_o, m_c):
     if m_o.x < m_c.x:
         m_c.x = 0
@@ -52,15 +62,14 @@ def main():
     while run:
         clock.tick(FPS)
         move_main_object(m_o)
-        for e in p.event.get():
-            if e.type == p.QUIT:
-                run = False
-
-
-        #m_c_jump(e, m_c)
+        m_c_jump(m_c)
         move_main_character(m_c)
         detect_collision(m_o, m_c)
         draw_window(m_c, m_o)
+
+        for e in p.event.get():
+            if e.type == p.QUIT:
+                run = False
 
     p.quit()
 

@@ -34,17 +34,23 @@ def move_main_character(m_c):
         m_c.x -= VEL
 
 def m_c_jump(m_c):
-    jump = False
-    key_input = p.key.get_pressed()
-    if key_input[p.K_SPACE] and jump == False:
-        jump = True
+    y_gravity = 1
+    jump_height = 2
+    y_velocity = jump_height
 
-    if jump == True:
-        m_c.y -= VEL
+
+    key_input = p.key.get_pressed()
+    if key_input[p.K_SPACE]:
+        m_c.y -= y_velocity
+        y_velocity -= y_gravity
+        if y_velocity < jump_height:
+            y_velocity = jump_height
+
+
 
 
 def detect_collision(m_o, m_c):
-    if m_o.x < m_c.x:
+    if m_o.x < m_c.x and m_c.y >= 149:
         m_c.x = 0
 
 def move_main_object(m_o):

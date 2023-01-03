@@ -1,1 +1,1 @@
-Write a basic platform game
+Write a platform game
